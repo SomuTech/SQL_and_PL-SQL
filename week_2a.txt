@@ -1,0 +1,139 @@
+Implement Data Definition Language commands -Create, Alter, Drop, Truncate,
+and Rename
+
+		--DDL COMMANDS
+           --CREATE
+--1.create student table with id, name,dept,age,city,gender
+SQL> create table student(id number(3) not null primary key,name char(7),
+dept char(4),age number(2),city char(5),gender varchar(5));
+Table created.
+
+SQL> desc student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                               CHAR(7)
+ DEPT                                               CHAR(4)
+ AGE                                                NUMBER(2)
+ CITY                                               CHAR(5)
+ GENDER                                             VARCHAR2(5)
+
+--2.CREATING TABLE USING ANOTHER TABLE
+SQL> create table new_student as select* from student;
+Table created.
+
+SQL> desc new_student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                               CHAR(7)
+ DEPT                                               CHAR(4)
+ AGE                                                NUMBER(2)
+ CITY                                               CHAR(5)
+ GENDER                                             VARCHAR2(5)
+
+SQL> create table student1 as select* from student;
+Table created.
+
+          --ALTER 
+--3.RENAME-rename student table to new_student
+SQL> alter table new_student rename to student2;
+Table altered.
+
+SQL> desc student2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- -------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                               CHAR(7)
+ DEPT                                               CHAR(4)
+ AGE                                                NUMBER(2)
+ CITY                                               CHAR(5)
+ GENDER                                             VARCHAR2(5)
+
+--4.RENAME-rename student1 table to employee
+SQL> alter table student rename to employee;
+Table altered.
+
+--5.ADD -add email column to student table
+SQL> alter table student add email varchar(20);
+Table altered.
+
+SQL> desc student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- -------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                               CHAR(7)
+ DEPT                                               CHAR(4)
+ AGE                                                NUMBER(2)
+ CITY                                               CHAR(5)
+ GENDER                                             VARCHAR2(5)
+ EMAIL                                              VARCHAR2(20)
+--6.ADD -add phone column to student table
+SQL> alter table student add phone varchar(10);
+Table altered.
+          --DROP
+--7.delete column city from student1
+SQL> alter table student1 drop column city;
+Table altered.
+
+SQL> desc student1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- --------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                               CHAR(7)
+ DEPT                                               CHAR(4)
+ AGE                                                NUMBER(2)
+ GENDER                                             VARCHAR2(5)
+ 
+--8.delete column phone from student2
+SQL> alter table student2 drop column phone;
+Table altered.
+
+		 --MODIFY
+--9.modify the datatype of dept in student
+SQL> alter table student modify dept varchar(5);
+Table altered
+
+SQL> desc student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- --------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                               CHAR(7)
+ DEPT                                               VARCHAR2(5)
+ AGE                                                NUMBER(2)
+ CITY                                               CHAR(5)
+ GENDER                                             VARCHAR2(5)
+ EMAIL                                              VARCHAR2(20)
+ 
+--10.modify the datatype of name in student
+SQL> alter table student modify name varchar(8);
+Table altered.
+
+		--TRUNCATE
+--11.truncate student2 data
+SQL> truncate table student2;
+Table truncated.
+
+--descrition of student2 table
+SQL> desc student2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                               CHAR(7)
+ DEPT                                               CHAR(4)
+ AGE                                                NUMBER(2)
+ GENDER                                             VARCHAR2(5)
+ 
+SQL> select *from student2;
+no rows selected
+
+		--DROP
+--12.delete table student2
+SQL> drop table student2;
+Table dropped.
+
+SQL> desc student2;
+ERROR:
+ORA-04043: object student2 does not exist
+
+

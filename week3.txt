@@ -1,0 +1,140 @@
+Implement various types of integrity constraints -NOT NULL constraint, DEFAULT
+constraint, UNIQUE constraint, PRIMARY key, FOREIGN key, CHECK constraint.
+
+--create sailors table with atributs sid,sname,rating and age
+
+SQL> create table sailors(sid number(4),sname varchar(8),rating number(5),age number(3));
+
+Table created.
+
+--make sid as primary key in sailors table
+SQL> alter table sailors add primary key(sid);
+
+Table altered.
+
+--add the constraint age must greater than 18 
+SQL> alter table sailors add check(age>18);
+
+Table alterd.
+
+-- add constraintto rating in between 1 to 5 to sailors
+SQL> alter table sailors add check(rating<6 and rating>-1);
+
+Table altered.
+
+SQL> desc sailors;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                       NOT NULL NUMBER(4)
+ SNAME                                              VARCHAR2(8)
+ RATING                                             NUMBER(5)
+ AGE                                                NUMBER(3
+
+--create a table boat with attributes bid,bname and colour with appropriate constraints
+SQL> create table boat(bid number(4), bname varchar(8) ,color varchar(5));
+
+Table created.
+
+--make bid as primary key in boat table
+SQL>alter table boat modify bid number(4) primary key;
+
+Table altered.
+
+--make boat colour defaultas red in boat table
+SQL> alter table boat modify color varchar(8) default 'red';
+
+Table altered.
+
+SQL> desc boat;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BID                                       NOT NULL NUMBER(4)
+ BNAME                                              VARCHAR2(8)
+ COLOR                                              VARCHAR2(5)
+
+--create reserve table with foreign keys bid,sid references from sailors and boat
+ tables and date as attributes
+
+SQL> create table reserve(sid number(4),bid number(4),"dt" date);
+
+Table created.
+
+--create constraints to sid, bidis from sailors,boat table in resrve table 
+SQL> alter table reserve add constraint FK_SID foreign key(sid) references sailors(sid);
+
+Table altered.
+
+SQL> alter table reserve add constraint FK_BID foreign key(Bid) references boat(bid);
+
+Table altered.
+
+--make the dt default as current date in reserve table
+SQL> alter table reserve modify "dt" default sysdate;
+
+Table altered.
+
+SQL> desc reserve;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                NUMBER(4)
+ BID                                                NUMBER(4)
+ dt                                                 DATE
+
+--display the data of sailors,reserve and boat
+SQL> select *from sailors;
+
+       SID SNAME        RATING        AGE
+---------- -------- ---------- ----------
+        22 sagar             7         30
+        29 sundar            7         27
+        31 ramu              8         28
+        32 ram               8         32
+        58 yogi              9         22
+        64 yurvi             6         26
+        71 munna             8         34
+        74 raju              8         42
+        85 nidhi             6         28
+        95 kajal             9         30
+		
+SQL> select *from boat;
+
+       BID BNAME    COLOR
+---------- -------- -----
+       101 yaari    red
+       102 godari   green
+       103 sagar    blue
+       104 mogal    blue
+	   
+SQL> select *from reserve;
+
+       SID        BID dt
+---------- ---------- ---------
+        22        101 02-NOV-12
+        22        102 12-APR-21
+        22        103 12-APR-21
+        22        104 12-APR-21
+        31        102 12-APR-21
+        31        103 12-APR-21
+        31        104 12-APR-21
+        64        103 10-JAN-20
+        64        102 12-APR-21
+        74        103 12-APR-21
+
+10 rows selected.
+
+--remove the constraints in reserve table
+SQL> alter table reserve drop constraint FK_SID;
+
+Table altered.
+
+SQL> alter table reserve drop constraint Fk_BID;
+
+Table altered.
+
+--remove the constraint primary key  in sailors table 
+SQL> alter table sailors drop primary key;
+
+Table altered.
+	   
+	   
+ 

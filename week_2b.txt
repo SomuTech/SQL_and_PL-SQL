@@ -1,0 +1,161 @@
+                    DML commands
+					
+Implement Data Manipulation Language commands -Insert, Select, Update, and Delete.
+
+--1.1INSERT -insert data to student table of atleast 10 tuples
+SQL> insert into student values(140,'yogi','me',35,'tpt','M');
+1 row created.
+
+SQL> insert into student(id,name,dept,city,age) values(126,'yogi','csse',39,'mumbai','M');
+1 row created.
+
+--SQL> insert into student(id,name,dept,age) values(210,'raghu','csse',30);
+--1 row created.
+
+-- SELECT-display the data of student table
+SQL> select *from staff;
+
+        ID NAME    DEPT            AGE CITY     GENDER
+---------- ------- -------- ---------- -------- ------
+       140 yogi    me               35 tpt      M
+       126 yogi    csse             39 mumbai   M
+       127 charan  csse             49 mumbai   M
+       137 charan  cse              49 mumbai   M
+       147 charan  cse              49 mumbai   M
+       105 giri    ece              28 hyd      F
+       150 ganesh  bse              33 delhi    F
+       120 prabha  bse              55 chennai  M
+       133 nidhi   ece              34 delhi    F
+       161 pooja   bse              25 hyd      F
+10 rows selected.
+
+--select name dept id from student table
+SQL> select name,dept,id from student;
+
+NAME    DEPT             ID
+------- -------- ----------
+yogi    me              140
+yogi    csse            126
+charan  csse            127
+charan  cse             137
+charan  cse             147
+giri    ece             105
+ganesh  bse             150
+prabha  bse             120
+nidhi   ece             133
+pooja   bse             161
+
+10 rows selected.
+
+--select distinct dept from student
+SQL> select distinct dept from student;
+
+DEPT
+--------
+cse
+bse
+me
+csse
+ece
+
+--select name id from student table where dept is cse
+SQL> select id,name from student where dept='cse';
+
+        ID NAME
+---------- -------
+       137 charan
+       147 charan
+	   
+--select data from student table from csse dept
+SQL>  select *from student where dept='csse';
+
+        ID NAME    DEPT            AGE CITY     GENDER
+---------- ------- -------- ---------- -------- ------
+       126 yogi    csse             39 mumbai   M
+       127 charan  csse             49 mumbai   M
+
+	--UPDATE
+--update student city as hyderabad whose id is 127
+SQL> update student set city='HYD' where id=127;
+
+1 row updated.
+
+--update student age whose age is greaterthan 50
+SQL> update student set age=30 where age>50;
+
+1 rows updated.
+
+--update student dept whose dept is me and gender is male
+SQL> update student set dept='ms' where dept='me' and gender='M';
+
+1 row updated.
+
+--update dept of students either whose dept is bse or age>30 
+SQL> update student set dept='ece' where dept='bse' or age>30;
+
+7 rows updated.
+
+--update student dept whose dept and city must be ece and pune
+SQL> update student set dept='mech' where dept='ece' and city='PUNE';
+
+0 rows updated.
+
+--update student dept whose dept is bse and city is either pune or bglr
+SQL> update student set dept='bse' where dept='ece' and city='pune' or city='BGLR';
+
+0 rows updated.
+
+-display the student data
+SQL> select *from student;
+
+        ID NAME    DEPT            AGE CITY     GENDER
+---------- ------- -------- ---------- -------- ------
+       140 yogi    ece              35 tpt      M
+       126 yogi    ece              39 mumbai   M
+       127 charan  ece              49 HYD      M
+       137 charan  ece              49 mumbai   M
+       147 charan  ece              49 mumbai   M
+       105 giri    ece              28 hyd      F
+       150 ganesh  ece              33 delhi    F
+       120 prabha  bse              30 chennai  M
+       133 nidhi   ece              34 delhi    F
+       161 pooja   bse              25 hyd      F
+10 rows selected.
+
+		--DELETE
+--delete students whose city is tpt
+SQL> delete from student where city='tpt';
+
+1 row deleted.
+
+--delete students whose city is hyd and age is 28
+SQL> delete from student where city='hyd' and age=28;
+
+1 row deleted.
+
+--delete student with roll number 137
+SQL> delete from student where id=137;
+
+1 row deleted.
+
+--delete student with name sohel either whose dept is bse or age>49 
+SQL> delete from student where name='sohel' and dept='bse' or age>49;
+
+0 rows deleted.
+
+--display the table student data
+SQL> select *from student;
+
+        ID NAME    DEPT            AGE CITY     GENDER
+---------- ------- -------- ---------- -------- ------
+       126 yogi    ece              39 mumbai   M
+       127 charan  ece              49 HYD      M
+       147 charan  ece              49 mumbai   M
+       150 ganesh  ece              33 delhi    F
+       120 prabha  bse              30 chennai  M
+       133 nidhi   ece              34 delhi    F
+       161 pooja   bse              25 hyd      F
+
+7 rows selected.
+
+

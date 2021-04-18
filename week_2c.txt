@@ -1,0 +1,166 @@
+                    --   SINGLE ROW FUNCTIONS
+Implement Single Row functions -Character, Numeric and Date functions.
+ 
+-- CHARACTER FUNCTIONS
+--upper to lower case
+SQL> select lower('SOMASEKHAR') from dual;
+
+LOWER('SOM
+----------
+somasekhar
+
+SQL> select lower('SOMASEKHAR') as lower from dual;
+
+LOWER
+----------
+somasekhar
+--lower to upper case
+SQL> select upper('somasekhar') from dual;
+
+UPPER('SOM
+----------
+SOMASEKHAR
+
+SQL> select upper('somasekhar') as upper from dual;
+
+UPPER
+----------
+SOMASEKHAR
+
+--concating to strings 
+SQL> select concat('data','base') from dual;
+
+CONCAT('
+--------
+database
+
+SQL> select concat('data','base') as cancat from dual;
+
+CANCAT
+--------
+database
+
+--initcap of strings
+SQL> select initcap('out of coverage area plz try after sometime') from dual;
+
+INITCAP('OUTOFCOVERAGEAREAPLZTRYAFTERSOMETI
+-------------------------------------------
+Out Of Coverage Area Plz Try After Sometime
+
+SQL> select initcap('data base management system') as initcap from dual;
+
+INITCAP
+---------------------------
+Data Base Management System
+
+--length() function
+
+SQL> select length('out of coverage area plz try after sometime') from dual;
+
+LENGTH('OUTOFCOVERAGEAREAPLZTRYAFTERSOMETIME')
+----------------------------------------------
+      43
+
+--trim() frunction
+
+SQL> select trim(leading '3' from 362354766467347826) as trim_leading from dual;
+
+TRIM_LEADING
+-----------------
+62354766467347826
+
+SELECT TRIM(TRAILING '1' FROM 1234567896541) AS TRAILING_TRIM FROM dual;
+
+TRAILING_TRI
+------------
+123456789654
+
+             --NUMERICAL FUNCTIONS
+--round()
+SQL> select round(4512356.54) from dual;
+
+ROUND(4512356.54)
+-----------------
+          4512357
+
+SQL> select round(4512356.24) from dual;
+
+ROUND(4512356.24)
+-----------------
+          4512356
+
+--mod() 
+
+SQL> select mod(45,2) from dual;
+
+ MOD(45,2)
+----------
+         1
+		 
+SQL> select mod(45,3) from dual;
+
+ MOD(45,3)
+----------
+         0
+		
+--ceil()		
+SQL> select ceil(4520.2) from dual;
+
+CEIL(4520.2)
+------------
+        4521
+
+--floor()
+SQL> select floor(4520.2) from dual;
+
+FLOOR(4520.2)
+-------------
+         4520
+ 
+ --sqrt()
+SQL> select sqrt(4520.2) from dual;
+
+SQRT(4520.2)
+------------
+  67.2324326
+
+SQL> select sqrt(256) from dual;
+
+ SQRT(256)
+----------
+        16
+
+
+            --DATE FUNCTIONS
+-- current DATE
+SQL> select sysdate from dual;
+
+SYSDATE
+---------
+09-APR-21
+ --date changes
+SQL> SELECT SYSDATE-2 FROM DUAL;
+
+SYSDATE-2
+---------
+07-APR-21
+
+SQL> SELECT SYSDATE+2 FROM DUAL;
+
+SYSDATE+2
+---------
+11-APR-21
+
+--months_between function
+SQL> SELECT MONTHS_BETWEEN(TO_DATE('12-2-2000','DD-MM-YYYY'),TO_DATE('10-1-2001','DD-MM-YYYY')) FROM DUAL;
+
+MONTHS_BETWEEN(TO_DATE('12-2-2000','DD-MM-YYYY'),TO_DATE('10-1-2001','DD-MM-YYYY
+--------------------------------------------------------------------------------
+                                                                      -10.935484
+
+SQL> SELECT MONTHS_BETWEEN(TO_DATE('12-1-2005','DD-MM-YYYY'),TO_DATE('10-1-2001','DD-MM-YYYY')) FROM DUAL;
+
+MONTHS_BETWEEN(TO_DATE('12-1-2005','DD-MM-YYYY'),TO_DATE('10-1-2001','DD-MM-YYYY
+--------------------------------------------------------------------------------
+                                                                      48.0645161
+																															  

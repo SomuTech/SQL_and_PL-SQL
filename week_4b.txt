@@ -1,0 +1,104 @@
+SQL> select *from sailors;
+
+       SID SNAME        RATING        AGE
+---------- -------- ---------- ----------
+        22 sagar             7         30
+        29 sundar            7         27
+        31 ramu              8         28
+        32 ram               8         32
+        58 yogi              9         22
+        64 yurvi             6         26
+        71 munna             8         34
+        74 raju              8         42
+        85 nidhi             6         28
+        95 kajal             9         30
+
+10 rows selected.
+
+SQL> select *from boat;
+
+       BID BNAME    COLOR
+---------- -------- -----
+       101 yaari    red
+       102 godari   green
+       103 sagar    blue
+       104 mogal    blue
+
+--find the names of sailors who reserved boat no 103 
+SQL> select s.sname from sailors s where s.sid 
+in(select r.sid from reserve r where r.bid=103);
+
+SNAME
+--------
+sagar
+ramu
+yurvi
+raju
+
+--find the names of sailors who reserved red boat
+SQL> select s.sname from sailors s where s.sid 
+in(select r.sid from reserve r where r.bid in 
+(select b.bid from boat b where b.color='red' ));
+
+SNAME
+--------
+sagar
+
+--find the names of sailorswho are not reserved red boat
+SQL> select s.sname from sailors s where s.sid 
+in(select r.sid from reserve r where r.bid not in 
+(select b.bid from boatb where b.color='red' ));
+
+SNAME
+--------
+raju
+yurvi
+ramu
+
+--find the sailors whose rating is greater than some sailor sagar
+SQL> select s.sname from sailors s where s.rating> any
+(select s2.rating from sailors s2 where s2.sname='sagar');
+
+SNAME
+--------
+yogi
+kajal
+ramu
+ram
+munna
+raju
+
+6 rows selected.
+
+--find the sailors whose rating is greater than every sailor sagar 
+SQL> select s.sid from sailors s where
+ s.rating>=all(select s2.rating from sailors s2 );
+
+       SID
+----------
+        95
+        58
+
+--find the names of sailors who have reserved all boats
+
+SQL> select s.sname from sailors s where not exists
+ (select b.bid from boat b where not exists
+ (select r.bid from reserve r where r.bid=b.bid and r.sid=s.sid));
+
+SNAME
+--------
+sagar
+
+--find the names of sailors who reserved boat no 103 
+
+SQL> select s.sname from sailors s where exists 
+(select *from reserve r where r.bid=103 and r.sid=s.sid);
+
+SNAME
+--------
+sagar
+ramu
+yurvi
+raju
+
+

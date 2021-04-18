@@ -1,0 +1,213 @@
+Implement group functions with different operators such as aggregate
+ operators,group by, having and order by.
+
+			AGGREGATE OPERATIONS
+
+--find the total members in sailors 
+SQL> select count(*) from sailors;
+
+  COUNT(*)
+----------
+        10
+
+--find the no.on distinct members in student table		
+SQL> select count(distinct s.name) from student s;
+
+COUNT(DISTINCTS.NAME)
+---------------------
+                    7
+	
+--find the total marks of all students in student table	
+SQL> select sum(s.marks) from student s;
+
+SUM(S.MARKS)
+------------
+         806
+
+--find the average marks all students in student
+SQL> select avg(s.marks) from student s;
+
+AVG(S.MARKS)
+------------
+        80.6
+
+--find the maximum id number from student
+SQL> select max(id) from student;
+
+   MAX(ID)
+----------
+       161
+
+--find the minimum id from student
+SQL> select min(id) from student;
+
+   MIN(ID)
+----------
+       105
+	   
+	   
+			--GROUP BY 
+			
+--find total no.of students with each name in student table
+SQL> select count(id),name from student group by name;
+
+ COUNT(ID) NAME
+---------- -------
+         2 yogi
+         3 charan
+         1 nidhi
+         1 pooja
+         1 ganesh
+         1 prabha
+         1 giri
+
+7 rows selected.
+
+--select the minimum the age with each rating in sailors
+SQL> select s.rating, min(s.age) from sailors s group by s.rating;
+
+    RATING MIN(S.AGE)
+---------- ----------
+         6         26
+         8         28
+         7         27
+         9         22
+	
+--select the total no.of sailors with each rating
+SQL> select s.rating,count(s.sname) from sailors s group by s.rating;
+
+    RATING COUNT(S.SNAME)
+---------- --------------
+         6              2
+         8              4
+         7              2
+         9              2
+		 
+--find maximum marks of students with each department 
+SQL> select s.dept,max(s.marks) from student s group by s.dept;
+
+DEPT     MAX(S.MARKS)
+-------- ------------
+cse                99
+bse                75
+me                 65
+csse               99
+ece                75
+
+--find total salary with each name from staff in order
+SQL> select name, sum(salary) from staff group by name order by name;
+
+NAME    SUM(SALARY)
+------- -----------
+charan        85000
+ganesh        43000
+giri          47000
+nidhi         43000
+pooja         47000
+prabha        75000
+yogi          62000
+
+7 rows selected.
+
+--find total no.of bid's with each sid whose sid must>75  
+SQL> select s.sid,count(b.bid) from sailors s,boat b 
+where s.sid>75 group by s.sid ;
+
+       SID COUNT(B.BID)
+---------- ------------
+        95            4
+        85            4
+
+				--ORDER BY
+
+--find sailors with 50<sid>30 order by sid
+SQL> select *from sailors where (sid>30 and sid<50) order by sid;
+
+       SID SNAME        RATING        AGE
+---------- -------- ---------- ----------
+        31 ramu              8         28
+        32 ram               8         32
+	
+--find boat in descending order of names	
+SQL> select *from boat order by bname desc;
+
+       BID BNAME    COLOR
+---------- -------- -----
+       101 yaari    red
+       103 sagar    blue
+       104 mogal    blue
+       102 godari   green
+	  
+--select total no.of id's with each name from student order by id 	  
+SQL> select count(id),name from student group by name order by count(id);
+
+ COUNT(ID) NAME
+---------- -------
+         1 pooja
+         1 prabha
+         1 nidhi
+         1 giri
+         1 ganesh
+         2 yogi
+         3 charan
+
+7 rows selected.
+
+--find the no.of students with each name order by maximum marks
+SQL> select s.name,count(s.id) from student s 
+group by s.name order by max(s.marks) desc;
+
+NAME    COUNT(S.ID)
+------- -----------
+charan            3
+nidhi             1
+ganesh            1
+prabha            1
+giri              1
+yogi              2
+pooja             1
+
+7 rows selected.
+
+				--HAVING
+				
+--find the no.of students with each gender with age>28 and having average marks >55
+SQL> select s.gender,count(s.id) from student s where s.age>28 
+group by s.gender having avg(marks)>55;
+
+GENDER COUNT(S.ID)
+------ -----------
+M                6
+F                2
+
+--find the no.of students in each dept whose marks<35
+SQL> select s.dept,count(s.id) from student s group by s.dept having avg(marks)<35;
+
+DEPT     COUNT(S.ID)
+-------- -----------
+csse               2
+
+--find the no.of students in each dept whose marks>35
+SQL> select s.dept,count(s.id) from student s group by s.dept having avg(marks)>35;
+
+DEPT     COUNT(S.ID)
+-------- -----------
+cse                2
+bse                3
+me                 1
+ece                2
+
+--find the avg age of sailors whose age>18 for each rating 
+level that has atleast two sailors
+SQL> select s.rating,avg(s.age) as average from sailors s where s.age>18 group by
+s.rating having 1<(select count(*) from sailors s2);
+
+    RATING    AVERAGE
+---------- ----------
+         6         27
+         8         34
+         7       28.5
+         9         26
+		 
+
+
