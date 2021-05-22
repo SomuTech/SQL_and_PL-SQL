@@ -1,0 +1,28 @@
+declare
+	n1 number:=&n1;
+	n2 number:=&n2;
+	n3 number:=&n3;
+begin
+	if (n1>n2 and n1>n3) then
+		dbms_output.put_line('greatest number is:'||n1);
+	elsif(n2>n1 and n2>n3) then
+		dbms_output.put_line('greatest number is:'||n2);
+	else
+		dbms_output.put_line('greatest number is:'||n3);
+	end if;
+end;
+/
+
+/*OUTPUT
+Enter value for n1: 8
+old   2:        n1 number:=&n1;
+new   2:        n1 number:=8;
+Enter value for n2: 56
+old   3:        n2 number:=&n2;
+new   3:        n2 number:=56;
+Enter value for n3: 50
+old   4:        n3 number:=&n3;
+new   4:        n3 number:=50;
+greatest number is:56
+
+PL/SQL procedure successfully completed.*/

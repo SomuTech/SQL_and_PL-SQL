@@ -1,0 +1,27 @@
+create or replace function math_operations(a number,b number,op varchar)
+return number
+as
+begin
+	if op='+' then
+		return  a+b;
+	elsif op='-' then
+		return  a-b;
+	elsif op='*' then
+                return  a*b;
+	elsif op='/' then
+		return  a/b;
+	else 
+		dbms_output.put_line('enter valid data');
+	end if;
+end;
+
+/*OUTPUT:
+SQL> select math_operations(12,45,'*') from dual;
+
+MATH_OPERATIONS(12,45,'*')
+--------------------------
+                       540
+
+TO SHOW ERRORS
+--show errors function math_operations;
+*/

@@ -1,0 +1,30 @@
+declare
+	n number:=&n;
+	i number:=1;
+	j number;
+begin
+	while i<=n loop
+		j:=1;
+		while j<n-i loop
+			dbms_output.put(' ');
+			j:=j+2;
+		end loop;
+		for k in 1..i loop
+			dbms_output.put('*');
+		end loop;
+		dbms_output.put_line('');
+		i:=i+2;
+	end loop;
+end;
+/
+
+/*OUTPUT:
+Enter value for n: 10
+old   2:        n number:=&n;
+new   2:        n number:=10;
+    *
+   ***
+  *****
+ *******
+*********
+PL/SQL procedure successfully completed.*/

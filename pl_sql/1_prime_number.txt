@@ -1,0 +1,30 @@
+declare
+	x number(10):=&x;
+	result number(1):=0;--initial prime
+	i number(10):=2;
+begin
+	while i<x loop
+		if mod(x,i)=0 then
+                    result:=1;-- not prime
+                end if;
+                i:=i+1;
+      end loop;
+      if result=0 then
+           dbms_output.put_line(x ||' is a prime');
+      else
+           dbms_output.put_line(x ||' is not a prime');
+      end if;
+end;
+
+/*OUTPUT
+Enter value for x: 27
+old   2:        x number(10):=&x;
+new   2:        x number(10):=27;
+27 is not a prime
+PL/SQL procedure successfully completed.
+
+Enter value for x: 31
+old   2:        x number(10):=&x;
+new   2:        x number(10):=31;
+31 is a prime
+PL/SQL procedure successfully completed.*/

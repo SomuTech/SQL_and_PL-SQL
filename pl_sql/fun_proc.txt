@@ -1,0 +1,920 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Mon May 10 14:11:47 2021
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect ss
+Enter password:
+Connected.
+SQL> select *from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+APEX$_ACL                      TABLE
+APEX$_WS_FILES                 TABLE
+APEX$_WS_HISTORY               TABLE
+APEX$_WS_LINKS                 TABLE
+APEX$_WS_NOTES                 TABLE
+APEX$_WS_ROWS                  TABLE
+APEX$_WS_TAGS                  TABLE
+APEX$_WS_WEBPG_SECTIONS        TABLE
+APEX$_WS_WEBPG_SECTION_HISTORY TABLE
+BIN$/6bs/+wURLSt6AYPyB/dcg==$0 TABLE
+BIN$/JGf1pX4TgitZqrZz2zSzw==$0 TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+BIN$0vcO3yyGTea21HCH6BCMoQ==$0 TABLE
+BIN$5jHmMMSQQxi4NqbCwj5qyA==$0 TABLE
+BIN$9BV/NzW7SdyJoRrIn+7aEQ==$0 TABLE
+BIN$AvtAXuJaRNe8zbQlQvidmA==$0 TABLE
+BIN$CJcQpZe7QI+WQa7OUOdG+w==$0 TABLE
+BIN$Cqx8AUJgT1SovwZbnH/00g==$0 TABLE
+BIN$KLfdf9mYQ5CzaWb9QrMXtw==$0 TABLE
+BIN$KbrOr4krTsac6hT9FBULtQ==$0 TABLE
+BIN$S8n8pS51StimxkZYEQ6rKQ==$0 TABLE
+BIN$UiK5YqfnR7WTFtBysHuNiA==$0 TABLE
+BIN$V2eEK0ucS0KcRHeQkFB/xw==$0 TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+BIN$Ws3RC2tpTLq5ApPenrKmAQ==$0 TABLE
+BIN$cDFbW+I4SFq88IznCcx5Sg==$0 TABLE
+BIN$eV8Ol9dRQuKT97FxBwSPTQ==$0 TABLE
+BIN$ejpb7/26TGujm+2iDFaljQ==$0 TABLE
+BIN$fPikib9SQLmrhei6vXiwrQ==$0 TABLE
+BIN$gsNuhkZKQYuvOj4+UsPWMw==$0 TABLE
+BIN$hQyL36jvT8+Ws/R64rnYnA==$0 TABLE
+BIN$lSkOfZy3RQaxuJyDv9PmbQ==$0 TABLE
+BIN$ysbaTAE6TtuRxMdueHuwig==$0 TABLE
+BIN$zvhPldO8Td+mvxV9D4GDEQ==$0 TABLE
+BOAT                           TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEMO_CUSTOMERS                 TABLE
+DEMO_ORDERS                    TABLE
+DEMO_ORDER_ITEMS               TABLE
+DEMO_PRODUCT_INFO              TABLE
+DEMO_STATES                    TABLE
+DEMO_USERS                     TABLE
+EMPLOYEE                       TABLE
+NEW_STUDENT                    TABLE
+RESERVE                        TABLE
+SAILORS                        TABLE
+STAFF                          TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+STUDENT                        TABLE
+STUDENT1                       TABLE
+TABLE1                         TABLE
+
+47 rows selected.
+
+SQL> select *from BIN$0vcO3yyGTea21HCH6BCMoQ==$0
+  2
+SQL> select *from BIN$0vcO3yyGTea21HCH6BCMoQ==$0;
+select *from BIN$0vcO3yyGTea21HCH6BCMoQ==$0
+                                       *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select sysdate from dual;
+
+SYSDATE
+---------
+10-MAY-21
+
+SQL> set serveroutput on;
+SQL> begin/
+  2  /
+begin/
+     *
+ERROR at line 1:
+ORA-06550: line 1, column 6:
+PLS-00103: Encountered the symbol "/" when expecting one of the following:
+( begin case declare exit for goto if loop mod null pragma
+raise return select update while with <an identifier>
+<a double-quoted delimited-identifier> <a bind variable> <<
+continue close current delete fetch lock insert open rollback
+savepoint set sql execute commit forall merge pipe purge
+
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  create or replace procedure salary(id in number,amount in number) as
+  2  begin
+  3     update employee set salary=salary+amount
+  4     where id=153;
+  5* end;
+SQL> /
+
+Procedure created.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  create or replace procedure salary(id in number,amount in number) as
+  2  begin
+  3     update employee set salary=salary+amount
+  4     where id=153;
+  5* end;
+SQL> select *from employee
+  2
+SQL> select *from employee;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY
+---------- ------- -------- ---------- -------- ------ ----------
+       140 yogi    me               35 tpt      M           27000
+       126 yogi    csse             39 mumbai   M           35000
+       127 charan  csse             49 mumbai   M           35000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           75000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+
+10 rows selected.
+
+SQL> exec salary(140,3000);
+
+PL/SQL procedure successfully completed.
+
+SQL> select *from employee;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY
+---------- ------- -------- ---------- -------- ------ ----------
+       140 yogi    me               35 tpt      M           27000
+       126 yogi    csse             39 mumbai   M           35000
+       127 charan  csse             49 mumbai   M           35000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           75000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+
+10 rows selected.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  create or replace procedure salary(id in number,amount in number) as
+  2     begin
+  3         update employee set salary=salary+amount
+  4        where id=140;
+  5*    end;/
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  create or replace procedure salary(id in number,amount in number) as
+  2  begin
+  3     update employee set salary=salary+amount where id=140;
+  4* end;
+SQL> /
+
+Procedure created.
+
+SQL> exec salary(140,3000);
+
+PL/SQL procedure successfully completed.
+
+SQL> select *from employee;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY
+---------- ------- -------- ---------- -------- ------ ----------
+       140 yogi    me               35 tpt      M           30000
+       126 yogi    csse             39 mumbai   M           35000
+       127 charan  csse             49 mumbai   M           35000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           75000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+
+10 rows selected.
+
+SQL> show errors procedure salary;
+No errors.
+SQL> edit
+Wrote file afiedt.buf
+
+  1  create or replace function math_operations(a number,b number,op varchar)
+  2  return number
+  3  as
+  4  begin
+  5     if op='+' then
+  6             return  a+b;
+  7     elsif op='-' then
+  8             return  a-b;
+  9     elsif op='*' then
+ 10             return  a*b;
+ 11     else op='/' then
+ 12             return  a/b;
+ 13     end if;
+ 14* end;
+ 15  /
+
+Warning: Function created with compilation errors.
+
+SQL> show errors function math_operations;
+Errors for FUNCTION MATH_OPERATIONS:
+ed
+LINE/COL ERROR
+-------- -----------------------------------------------------------------
+11/9     PLS-00103: Encountered the symbol "=" when expecting one of the
+         following:
+         := . ( @ % ;
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  create or replace function math_operations(a number,b number,op varchar)
+  2  return number
+  3  as
+  4  begin
+  5     if op='+' then
+  6             return  a+b;
+  7     elsif op='-' then
+  8             return  a-b;
+  9     elsif op='*' then
+ 10             return  a*b;
+ 11     else
+ 12             return  a/b;
+ 13     end if;
+ 14* end;
+SQL> /
+
+Function created
+SQL> select math_operations(12,45,'*');
+select math_operations(12,45,'*')
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select math_operations(12,45,'*') from dual;
+
+MATH_OPERATIONS(12,45,'*')
+--------------------------
+                       540
+
+SQL> select *from user_objects where object_type='function';
+
+no rows selected
+
+SQL> select *from user_objects;
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_LINKS_PK
+                                    20116          20116 INDEX
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          4
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_TAGS
+                                    20117          20117 TABLE
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_TAGS_PK
+                                    20118          20118 INDEX
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          4
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_FILES
+                                    20119          20119 TABLE
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_FILES_PK
+                                    20122          20122 INDEX
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          4
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+SYS_LOB0000020119C00010$$
+                                    20120          20120 LOB
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N Y N          8
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_WEBPG_SECTION_HISTORY
+                                    20123          20123 TABLE
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+SYS_LOB0000020123C00009$$
+                                    20126          20126 LOB
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N Y N          8
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+SYS_LOB0000020123C00008$$
+                                    20124          20124 LOB
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N Y N          8
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_ACL_IDX1
+                                    20128          20128 INDEX
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          4
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_ROWS_IDX
+                                    20129          20129 INDEX
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          4
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_HISTORY_IDX
+                                    20130          20130 INDEX
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          4
+
+
+
+------------------------------
+DEMO_CUST_SEQ
+                                    20067                SEQUENCE
+25-MAR-21 25-MAR-21 2021-03-25:20:33:25 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+DEMO_ORDER_ITEMS_SEQ
+                                    20068                SEQUENCE
+25-MAR-21 25-MAR-21 2021-03-25:20:33:25 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+DEMO_ORD_SEQ
+                                    20069                SEQUENCE
+25-MAR-21 25-MAR-21 2021-03-25:20:33:25 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED 
+EDITION_NAME
+------------------------------
+DEMO_USERS_T1
+                                    20075                TRIGGER
+25-MAR-21 25-MAR-21 2021-03-25:20:33:26 VALID   N N N          3
+
+
+
+OBJECT_NAME
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+SYS_LOB0000020098C00008$$
+                                    20101          20101 LOB
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N Y N          8
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+SYS_LOB0000020098C00007$$
+                                    20099          20099 LOB
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N Y N          8
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_ROWS
+                                    20104          20104 TABLE
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_ROWS_PK
+                                    20109          20109 INDEX
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          4
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+SYS_LOB0000020104C00166$$
+                                    20107          20107 LOB
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N Y N          8
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+SYS_LOB0000020104C00165$$
+                                    20105          20105 LOB
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N Y N          8
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_HISTORY
+                                    20110          20110 TABLE
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_NOTES
+                                    20111          20111 TABLE
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_NOTES_PK
+                                    20114          20114 INDEX
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          4
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+SYS_LOB0000020111C00007$$
+                                    20112          20112 LOB
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N Y N          8
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+APEX$_WS_LINKS
+                                    20115          20115 TABLE
+25-MAR-21 25-MAR-21 2021-03-25:20:33:31 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+STAFF
+                                    20154          20154 TABLE
+26-MAR-21 08-MAY-21 2021-05-08:19:42:30 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+NEW_STUDENT
+                                    20357          20357 TABLE
+10-APR-21 10-APR-21 2021-04-10:20:35:43 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+STUDENT1
+                                    20358          20358 TABLE
+10-APR-21 10-APR-21 2021-04-10:20:44:03 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+STUDENT
+                                    20360          20360 TABLE
+10-APR-21 08-MAY-21 2021-05-08:20:05:31 VALID   N N N          1
+
+
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+SUBOBJECT_NAME                  OBJECT_ID DATA_OBJECT_ID OBJECT_TYPE
+------------------------------ ---------- -------------- -------------------
+CREATED   LAST_DDL_ TIMESTAMP           STATUS  T G S  NAMESPACE
+--------- --------- ------------------- ------- - - - ----------
+EDITION_NAME
+------------------------------
+SAILORS
+                                    20388          20388 TABLE
+      20400 INDEX
+11-APR-21 11-APR-21 2021-04-11:14:44:58 VALID   N Y N          4
+
+MATH_OPERATIONS
+                                    20784                FUNCTION
+10-MAY-21 10-MAY-21 2021-05-10:14:42:11 VALID   N N N          1
+
+
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  declare
+  2     a number;
+  3     b number;
+  4     c number;
+  5     procedure find_min(x in number,y in nymber,z out number)
+  6     is
+  7     begin
+  8             if x<y then
+  9                     z:=x;
+ 10             else
+ 11                     z:=y;
+ 12             end if;
+ 13     end;
+ 14  begin
+ 15     a:=&a;
+ 16     b:=&b;
+ 17     findmin(a,b,c);
+ 18     dbms_output.putline('min'||c);
+ 19* end;
+SQL> /
+Enter value for a: 78
+old  15:        a:=&a;
+new  15:        a:=78;
+Enter value for b: 45
+old  16:        b:=&b;
+new  16:        b:=45;
+        procedure find_min(x in number,y in nymber,z out number)
+                                            *
+ERROR at line 5:
+ORA-06550: line 5, column 38:
+PLS-00201: identifier 'NYMBER' must be declared
+ORA-06550: line 5, column 2:
+PL/SQL: Item ignored
+ORA-06550: line 17, column 2:
+PLS-00201: identifier 'FINDMIN' must be declared
+ORA-06550: line 17, column 2:
+PL/SQL: Statement ignored
+ORA-06550: line 18, column 14:
+PLS-00302: component 'PUTLINE' must be declared
+ORA-06550: line 18, column 2:
+PL/SQL: Statement ignored
+
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  declare
+  2     a number;
+  3     b number;
+  4     c number;
+  5     procedure find_min(x in number,y in number,z out number)
+  6     is
+  7     begin
+  8             if x<y then
+  9                     z:=x;
+ 10             else
+ 11                     z:=y;
+ 12             end if;
+ 13     end;
+ 14  begin
+ 15     a:=&a;
+ 16     b:=&b;
+ 17     findmin(a,b,c);
+ 18     dbms_output.putline('min'||c);
+ 19* end;
+SQL> /
+Enter value for a: 78
+old  15:        a:=&a;
+new  15:        a:=78;
+Enter value for b: 45
+old  16:        b:=&b;
+new  16:        b:=45;
+        findmin(a,b,c);
+        *
+ERROR at line 17:
+ORA-06550: line 17, column 2:
+PLS-00201: identifier 'FINDMIN' must be declared
+ORA-06550: line 17, column 2:
+PL/SQL: Statement ignored
+ORA-06550: line 18, column 14:
+PLS-00302: component 'PUTLINE' must be declared
+ORA-06550: line 18, column 2:
+PL/SQL: Statement ignored
+
+
+SQL> edir
+SP2-0042: unknown command "edir" - rest of line ignored.
+SQL> edit
+Wrote file afiedt.buf
+
+  1  declare
+  2     a number;
+  3     b number;
+  4     c number;
+  5     procedure find_min(x in number,y in number,z out number)
+  6     is
+  7     begin
+  8             if x<y then
+  9                     z:=x;
+ 10             else
+ 11                     z:=y;
+ 12             end if;
+ 13     end;
+ 14  begin
+ 15     a:=&a;
+ 16     b:=&b;
+ 17     find_min(a,b,c);
+ 18     dbms_output.putline('min'||c);
+ 19* end;
+SQL> /
+Enter value for a: 456
+old  15:        a:=&a;
+new  15:        a:=456;
+Enter value for b: 78
+old  16:        b:=&b;
+new  16:        b:=78;
+        dbms_output.putline('min'||c);
+                    *
+ERROR at line 18:
+ORA-06550: line 18, column 14:
+PLS-00302: component 'PUTLINE' must be declared
+ORA-06550: line 18, column 2:
+PL/SQL: Statement ignored
+
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  declare
+  2     a number;
+  3     b number;
+  4     c number;
+  5     procedure find_min(x in number,y in number,z out number)
+  6     is
+  7     begin
+  8             if x<y then
+  9                     z:=x;
+ 10             else
+ 11                     z:=y;
+ 12             end if;
+ 13     end;
+ 14  begin
+ 15     a:=&a;
+ 16     b:=&b;
+ 17     find_min(a,b,c);
+ 18     dbms_output.put_line('min'||c);
+ 19* end;
+SQL> /
+Enter value for a: 78
+old  15:        a:=&a;
+new  15:        a:=78;
+Enter value for b: 45
+old  16:        b:=&b;
+new  16:        b:=45;
+min45
+
+PL/SQL procedure successfully completed.
+
+SQL> commit;
+
+Commit complete.
+
+SQL>
+ declare
+  2     a number;
+  3     b number;
+  4     op varchar(1);
+  5     result number;
+  6     function math_operations(a number,b number,op varchar)
+  7     return number
+  8     as
+  9     begin
+ 10             if op='+' then
+ 11                     return a+b;
+ 12             elsif op='-' then
+ 13                     return a-b;
+ 14             elsif op='*' then
+ 15                     return a*b;
+ 16             elsif op='/' then
+ 17                     return a/b;
+ 18             else
+ 19                     return 0;
+ 20             end if;
+ 21     end;
+ 22  begin
+ 23     a:=&a;
+ 24     b:=&b;
+ 25     op:='&operation';
+ 26     result:=math_operations(a,b,op);
+ 27     dbms_output.put_line('result:'||result);
+ 28* end;

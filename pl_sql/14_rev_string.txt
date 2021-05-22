@@ -1,0 +1,20 @@
+declare
+	str varchar(20):='&str';
+	rev_str varchar(20);
+	len number;
+begin
+	dbms_output.put_line('given string:'||str);
+	len:=length(str);
+	for i in reverse 1..len loop
+		rev_str:=rev_str||substr(str,i,1);
+	end loop;
+	dbms_output.put_line('reverse string:'||rev_str);
+end;
+/
+/*OUTPUT
+Enter value for str: rahkesamos
+old   2:        str varchar(20):='&str';
+new   2:        str varchar(20):='rahkesamos';
+given string:rahkesamos
+reverse string:somasekhar
+PL/SQL procedure successfully completed.*/

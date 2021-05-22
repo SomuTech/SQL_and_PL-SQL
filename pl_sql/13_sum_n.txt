@@ -1,0 +1,16 @@
+declare
+	n number:=&n;
+	s number:=0;
+begin
+	for i in 1..n loop
+		s:=s+i;
+	end loop;
+	dbms_output.put_line('sum of values:'||s);
+end;
+/
+/*OUTPUT
+Enter value for n: 5
+old   5:        n:=&n;
+new   5:        n:=5;
+sum of values:15
+PL/SQL procedure successfully completed.*/

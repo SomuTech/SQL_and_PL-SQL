@@ -1,0 +1,82 @@
+declare
+	eid number:=&eid;
+	esal number;
+	minsal number;
+	maxsal number;
+	midRange number;
+begin
+	select min(salary),max(salary) into minsal,maxsal from employee;
+	select salary into esal from employee where id=eid;
+	midRange:=(maxsal+minsal)/2;
+	if esal>midRange then
+		update employee set salary=(esal+(esal*8)/100) where id=eid;
+		commit;
+		dbms_output.put_line('employee with id:'||eid||' salary is updated by 8% ');
+	elsif esal<midRange then
+		update employee set salary=midRange where id=eid;
+		commit;
+		dbms_output.put_line('employee with id:'||eid||' salary is updated to '||midRange);
+	else
+		dbms_output.put_line('there is no changes in salary...');
+	end if;
+end; 
+/
+
+/*OUTPUT:
+--initial data
+SQL> select *from employee;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY
+---------- ------- -------- ---------- -------- ------ ----------
+       140 yogi    me               35 tpt      M           30000
+       126 yogi    csse             39 mumbai   M           35000
+       127 charan  csse             49 mumbai   M           35000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           75000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+
+10 rows selected.
+
+=====================================================
+Enter value for eid: 127
+old   2:        eid number:=&eid;
+new   2:        eid number:=127;
+employee with id:127 salary is updated to 53000
+PL/SQL procedure successfully completed.
+
+Enter value for eid: 120
+old   2:        eid number:=&eid;
+new   2:        eid number:=120;
+employee with id:120 salary is updated by 8%
+PL/SQL procedure successfully completed.
+
+Enter value for eid: 140
+old   2:        eid number:=&eid;
+new   2:        eid number:=140;
+there is no changes in salary...
+PL/SQL procedure successfully completed.
+====================================================
+--after update
+SQL> select *from employee;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY
+---------- ------- -------- ---------- -------- ------ ----------
+       140 yogi    me               35 tpt      M           30000
+       126 yogi    csse             39 mumbai   M           35000
+       127 charan  csse             49 mumbai   M           53000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           81000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+
+10 rows selected.*/
+
+
+

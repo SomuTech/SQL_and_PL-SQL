@@ -1,0 +1,31 @@
+declare
+	n number:=&n;
+	temp number:=0;
+	temp1 number:=1;
+	temp2 number:=2;
+begin
+	dbms_output.put_line(0);
+	dbms_output.put_line(1);
+	while temp2<=n loop
+		temp2:=temp+temp1;
+		temp:=temp1;
+		temp1:=temp2;
+		dbms_output.put_line(temp2||' ');
+	end loop;
+end;
+/
+
+*/OUTPUT
+Enter value for n: 8
+old   2:        n number:=&n;
+new   2:        n number:=8;
+0
+1
+1
+2
+3
+5
+8
+13
+
+PL/SQL procedure successfully completed.*/

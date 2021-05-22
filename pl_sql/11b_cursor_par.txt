@@ -1,0 +1,32 @@
+DECLARE  
+   e_name employee.name%type;  
+   e_salary employee.salary%type;  
+   spec_sal number:=&spec_sal;
+   CURSOR emp_cursor(spec_sal number) is  
+      SELECT name, salary FROM employee where salary<spec_sal;  
+BEGIN  
+   OPEN emp_cursor(spec_sal);  
+   dbms_output.put_line('employee name	employee salary');
+   LOOP  
+      FETCH emp_cursor into e_name, e_salary;
+      EXIT WHEN emp_cursor %notfound;  
+      dbms_output.put_line(e_name||'		'||e_salary); 
+   END LOOP;  
+   CLOSE emp_cursor;  
+END;  
+/
+
+/*OUTPUT:
+Enter value for spec_sal: 45000
+old   4:    spec_sal number:=&spec_sal;
+new   4:    spec_sal number:=45000;
+employee name   employee salary
+charan          35000
+charan          25000
+charan          25000
+ganesh          43000
+nidhi           43000
+
+PL/SQL procedure successfully completed.
+
+SQL>*/

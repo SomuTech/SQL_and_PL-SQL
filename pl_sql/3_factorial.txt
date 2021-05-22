@@ -1,0 +1,36 @@
+declare
+	n number:=&n;
+	result number:=1;
+begin
+	if n=0 then
+		dbms_output.put_line('factorial of '||n||' is '||1);
+	elsif n<0 then
+		dbms_output.put_line('Invalid.....!');
+	else
+		for i in 1..n loop
+			result:=result*i;
+		end loop;
+		dbms_output.put_line('factorial of '||n||' is '||result);
+	end if;
+end;
+/
+
+/*OUTPUT
+Enter value for n: 7
+old   2:        n number:=&n;
+new   2:        n number:=7;
+factorial of 7 is 5040
+PL/SQL procedure successfully completed.
+
+Enter value for n: 0
+old   2:        n number:=&n;
+new   2:        n number:=0;
+factorial of 0 is 1
+PL/SQL procedure successfully completed.
+
+Enter value for n: -58
+old   2:        n number:=&n;
+new   2:        n number:=-58;
+Invalid.....!
+PL/SQL procedure successfully completed.
+*/

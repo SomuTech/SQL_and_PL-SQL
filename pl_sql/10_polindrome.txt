@@ -1,0 +1,30 @@
+declare
+	n number:=&n;
+	temp number:=n;
+	r number;
+	reverse number:=0;
+begin
+	while n!=0 loop
+		r:=mod(n,10);	
+		reverse:=reverse*10+r;
+		n:=floor(n/10);
+	end loop;
+	if temp=reverse then
+		dbms_output.put_line('polindrome.....');
+	else
+		dbms_output.put_line('not polindrome....');
+	end if;
+end;
+/
+/*OUTPUT
+Enter value for n: 2525252
+old   2:        n number:=&n;
+new   2:        n number:=2525252;
+polindrome.....
+PL/SQL procedure successfully completed.
+
+Enter value for n: 452
+old   2:        n number:=&n;
+new   2:        n number:=452;
+not polindrome....
+PL/SQL procedure successfully completed.*/	

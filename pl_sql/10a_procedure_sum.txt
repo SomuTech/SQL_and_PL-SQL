@@ -1,0 +1,25 @@
+declare
+	a number:=&a;
+	b number:=&b;
+	result number;
+	procedure addition(x in number,y in number,result out number)
+	is
+	begin
+		result:=x+y;
+	end;
+begin
+	addition(a,b,result);
+	dbms_output.put_line('addition given 2 numbers: '||result);
+end;
+/
+
+/*OUTPUT:
+Enter value for a: 45
+old   2:        a number:=&a;
+new   2:        a number:=45;
+Enter value for b: 45
+old   3:        b number:=&b;
+new   3:        b number:=45;
+addition given 2 numbers: 90
+
+PL/SQL procedure successfully completed.*/

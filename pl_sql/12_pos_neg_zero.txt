@@ -1,0 +1,30 @@
+declare
+	n number:=&n;
+begin
+	if n=0 then
+		dbms_output.put_line(n ||' is zero');
+	elsif n>0 then
+		dbms_output.put_line(n ||' is positive number');
+	else  
+		dbms_output.put_line(n ||' is negative number');
+	end if;
+end;
+/
+/*OUTPUT
+Enter value for n: 5
+old   2:        n number:=&n;
+new   2:        n number:=5;
+5 is positive number
+PL/SQL procedure successfully completed.
+
+Enter value for n: -85
+old   2:        n number:=&n;
+new   2:        n number:=-85;
+-85 is negative number
+PL/SQL procedure successfully completed.
+
+Enter value for n: 0
+old   2:        n number:=&n;
+new   2:        n number:=0;
+0 is zero
+PL/SQL procedure successfully completed.*/

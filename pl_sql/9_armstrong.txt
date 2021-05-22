@@ -1,0 +1,31 @@
+declare
+	n number:=&n;
+	s number:=0;
+	a number;
+	b number:=n;
+begin
+	while n>0 loop
+		a:=mod(n,10);
+		s:=s+(a*a*a);
+		n:=floor(n/10);
+	end loop;
+	if b=s then
+		dbms_output.put_line('armstrong...');
+	else
+		dbms_output.put_line('not armstrong...');
+	end if;
+end;
+/
+
+/*OUTPUT
+Enter value for n: 153
+old   2:        n number:=&n;
+new   2:        n number:=153;
+armstrong...
+PL/SQL procedure successfully completed.
+
+Enter value for n: 145
+old   2:        n number:=&n;
+new   2:        n number:=145;
+not armstrong...
+PL/SQL procedure successfully completed.*/

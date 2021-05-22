@@ -1,0 +1,34 @@
+declare
+	grade varchar(1):='&grade';
+begin
+	CASE grade
+		when 'O' then
+			dbms_output.put_line('grade-O_outstanding');
+		when 'S' then
+			dbms_output.put_line('grade-S_superior');
+		when 'A' then
+			dbms_output.put_line('grade-A_excellent');
+		when 'B' then
+			dbms_output.put_line('grade-B_very good');
+		when 'C' then
+			dbms_output.put_line('grade-C_good');
+		when 'D' then
+			dbms_output.put_line('grade-D_pass');
+		when 'F' then
+			dbms_output.put_line('grade-F_fail');
+	end CASE;
+end;
+/
+
+/*OUTPUT:
+Enter value for grade: A
+old   2:        grade varchar(1):='&grade';
+new   2:        grade varchar(1):='A';
+grade-A_excellent
+PL/SQL procedure successfully completed.
+
+Enter value for grade: F
+old   2:        grade varchar(1):='&grade';
+new   2:        grade varchar(1):='F';
+grade-F_fail
+PL/SQL procedure successfully completed.*/

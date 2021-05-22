@@ -1,0 +1,30 @@
+declare
+	eid number;
+	sal number;
+	result number; 
+	function update_salary(sal in number)
+	return number
+	as
+	begin
+	if sal<=3000 then
+		update employee set salary=sal+(sal*30)/100 where id=eid;
+		return sal+(sal*30)/100;
+	elsif sal>3000 and sal<=6000 then
+		update employee set salary=sal+(sal*20)/100 where id=eid;		
+		return sal+(sal*20)/100;
+	else 
+		update employee set salary=sal+(sal*10)/100 where id=eid;		
+		return sal+(sal*10)/100;
+	end if;
+	end;
+begin
+	select id, salary into eid,sal from employee where id=140;	
+	result:=update_salary(sal);
+	dbms_output.put_line('updated salary:  '||result);
+end;
+/
+
+/*OUTPUT:
+updated salary:  60500
+
+PL/SQL procedure successfully completed.*/

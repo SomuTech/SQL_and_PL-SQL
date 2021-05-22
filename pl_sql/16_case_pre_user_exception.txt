@@ -1,0 +1,51 @@
+declare
+	grade varchar(1):='&grade';
+	input_error exception;
+begin
+	if not (grade>='A' and grade<='Z') then
+		raise input_error;
+	end if;
+	CASE grade
+		when 'O' then
+			dbms_output.put_line('grade-O_outstanding');
+		when 'S' then
+			dbms_output.put_line('grade-S_superior');
+		when 'A' then
+			dbms_output.put_line('grade-A_excellent');
+		when 'B' then
+			dbms_output.put_line('grade-B_very good');
+		when 'C' then
+			dbms_output.put_line('grade-C_good');
+		when 'D' then
+			dbms_output.put_line('grade-D_pass');
+		when 'F' then
+			dbms_output.put_line('grade-F_fail');
+	end CASE;
+	exception
+		when case_not_found then
+			dbms_output.put_line('there is no such grade');
+		when input_error then
+			dbms_output.put_line('error......! please enter valid grade...');
+		when others then
+			dbms_output.put_line('error......!');
+end;
+/
+
+/*OUTPUT:
+Enter value for grade: A
+old   2:        grade varchar(1):='&grade';
+new   2:        grade varchar(1):='A';
+grade-A_excellent
+PL/SQL procedure successfully completed.
+
+Enter value for grade: 2
+old   2:        grade varchar(1):='&grade';
+new   2:        grade varchar(1):='2';
+error......! please enter valid grade...
+PL/SQL procedure successfully completed.
+
+Enter value for grade: Z
+old   2:        grade varchar(1):='&grade';
+new   2:        grade varchar(1):='Z';
+there is no such grade
+PL/SQL procedure successfully completed.*/

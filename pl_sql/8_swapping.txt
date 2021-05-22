@@ -1,0 +1,27 @@
+declare
+	n1 number:=&n1;
+	n2 number:=&n2;
+begin
+	dbms_output.put_line('intial.....');
+	dbms_output.put_line('number1='||n1||'   number2='||n2);
+	n1:=n1+n2;
+	n2:=n1-n2;
+	n1:=n1-n2;
+	dbms_output.put_line('after swapping.....');
+	dbms_output.put_line('number1='||n1||'  number2='||n2);
+end;
+/
+
+/*OUTPUT
+Enter value for n1: 5
+old   2:        n1 number:=&n1;
+new   2:        n1 number:=5;
+Enter value for n2: 8
+old   3:        n2 number:=&n2;
+new   3:        n2 number:=8;
+intial.....
+number1=5   number2=8
+after swapping.....
+number1=8  number2=5
+
+PL/SQL procedure successfully completed.*/

@@ -1,0 +1,30 @@
+DECLARE  
+   e_id employee.id%type;  
+   e_name employee.name%type;  
+   e_jobs employee.jobs%type;  
+   CURSOR emp_cursor is  
+      SELECT id, name, jobs FROM employee;  
+BEGIN  
+   OPEN emp_cursor;  
+   LOOP  
+      FETCH emp_cursor into e_id, e_name, e_jobs;  
+      EXIT WHEN emp_cursor %notfound;  
+      dbms_output.put_line('employee name:'||e_name||'		no of jobs done:'||e_jobs);  
+   END LOOP;  
+   CLOSE emp_cursor;  
+END;  
+/
+
+/*OUTPUT:
+employee name:yogi              no of jobs done:2
+employee name:yogi              no of jobs done:5
+employee name:charan            no of jobs done:5
+employee name:charan            no of jobs done:4
+employee name:charan            no of jobs done:4
+employee name:giri              no of jobs done:3
+employee name:ganesh            no of jobs done:3
+employee name:prabha            no of jobs done:6
+employee name:nidhi             no of jobs done:3
+employee name:pooja             no of jobs done:0
+
+PL/SQL procedure successfully completed.*/

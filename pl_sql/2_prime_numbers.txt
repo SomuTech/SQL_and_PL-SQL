@@ -1,0 +1,38 @@
+declare
+	n number(10):=&n;
+	result number;
+	i number;
+begin
+	if n=1 then 
+		dbms_output.put_line(n ||' ');
+	end if;
+	for k in 2..n loop
+		i:=2;
+		result:=0;
+		while i<k loop
+			if mod(k,i)=0 then
+				result:=1;
+			end if;
+			i:=i+1;
+		end loop;
+		if result=0 then
+            		dbms_output.put_line(k ||' ');
+		end if;
+	end loop;
+end;
+/
+
+/*OUTPUT
+Enter value for n: 25
+old   2:        n number(10):=&n;
+new   2:        n number(10):=25;
+2
+3
+5
+7
+11
+13
+17
+19
+23
+PL/SQL procedure successfully completed.*/

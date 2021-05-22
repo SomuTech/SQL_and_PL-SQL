@@ -1,0 +1,31 @@
+declare
+	charc varchar(1):='&enter_charactor';
+begin
+	if ((charc>='A' and charc<='Z') or (charc>='a' and charc<='z')) then
+		dbms_output.put_line('given character is letter...');
+	elsif charc between '0' and '9' then
+		dbms_output.put_line('given character is digit....');
+	else
+		dbms_output.put_line('given character is not a digit and letter..! it may be a symbol..');
+	end if;
+end;
+/
+
+/*OUTPUT:
+Enter value for enter_charactor: A
+old   2:        charc varchar(1):='&enter_charactor';
+new   2:        charc varchar(1):='A';
+given character is letter...
+PL/SQL procedure successfully completed.
+
+Enter value for enter_charactor: 4
+old   2:        charc varchar(1):='&enter_charactor';
+new   2:        charc varchar(1):='4';
+given character is digit....
+PL/SQL procedure successfully completed.
+
+Enter value for enter_charactor: !
+old   2:        charc varchar(1):='&enter_charactor';
+new   2:        charc varchar(1):='!';
+given character is not a digit and letter..! it may be a symbol..
+PL/SQL procedure successfully completed.*/

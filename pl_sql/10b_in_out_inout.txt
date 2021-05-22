@@ -1,0 +1,28 @@
+declare
+	a number:=&a;
+	b number:=&b;
+	c number:=&c;
+	procedure addition(x IN number,y IN  number,z IN OUT number)
+	is
+	begin
+		z:=x+y+z;
+	end;
+begin
+	addition(a,b,c);
+	dbms_output.put_line('addition given 3 numbers: '||c);
+end;
+/
+
+/*OUTPUT:
+Enter value for a: 14
+old   2:        a number:=&a;
+new   2:        a number:=14;
+Enter value for b: 54
+old   3:        b number:=&b;
+new   3:        b number:=54;
+Enter value for c: 78
+old   4:        c number:=&c;
+new   4:        c number:=78;
+addition given 3 numbers: 146
+
+PL/SQL procedure successfully completed.*/

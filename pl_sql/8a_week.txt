@@ -1,0 +1,29 @@
+declare
+	input_id number:=&input_id;
+	sname varchar(8);
+	saddr varchar(5);
+begin
+	select name,address into sname,saddr from student where id=input_id;
+	dbms_output.put_line('student name:'||sname);
+	dbms_output.put_line('student address:'||saddr);
+	exception
+	        when no_data_found then
+	               dbms_output.put_line('no such data found.....!');
+	     	when others then
+		        dbms_output.put_line('error...!');
+end;
+/
+
+/*OUTPUT:
+Enter value for input_id: 140
+old   2:        input_id number:=&input_id;
+new   2:        input_id number:=140;
+student name:yogi
+student address:tpt
+PL/SQL procedure successfully completed.
+Enter value for input_id: 520
+old   2:        input_id number:=&input_id;
+new   2:        input_id number:=520;
+no such data found.....!
+PL/SQL procedure successfully completed.*/
+/

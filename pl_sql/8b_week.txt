@@ -1,0 +1,55 @@
+declare
+	input_id number:=&input_id;
+	input_salary number:=&input_salary;
+	below_salary_exc exception;
+	above_salary_exc exception;
+	eid number;
+	esalary number;
+begin
+	select id,salary into eid,esalary from employee where id=input_id;
+	if input_salary=esalary then
+		dbms_output.put_line('employee id:'||eid);
+		dbms_output.put_line('employee salary:'||esalary);
+	elsif input_salary<esalary then
+		raise below_salary_exc;
+	else
+		raise above_salary_exc;
+	end if;
+	exception
+	        when below_salary_exc then
+	               dbms_output.put_line('salary is below the range..!');
+		when above_salary_exc then
+	              dbms_output.put_line('salary is above the range..!');
+	     	when others then
+		        dbms_output.put_line('error...!');
+end;
+/
+
+/*OUTPUT:
+Enter value for input_id: 127
+old   2:        input_id number:=&input_id;
+new   2:        input_id number:=127;
+Enter value for input_salary: 35000
+old   3:        input_salary number:=&input_salary;
+new   3:        input_salary number:=35000;
+employee id:127
+employee salary:35000
+PL/SQL procedure successfully completed.
+
+Enter value for input_id: 127
+old   2:        input_id number:=&input_id;
+new   2:        input_id number:=127;
+Enter value for input_salary: 3000
+old   3:        input_salary number:=&input_salary;
+new   3:        input_salary number:=3000;
+salary is below the range..!
+PL/SQL procedure successfully completed.
+
+Enter value for input_id: 140
+old   2:        input_id number:=&input_id;
+new   2:        input_id number:=140;
+Enter value for input_salary: 78546
+old   3:        input_salary number:=&input_salary;
+new   3:        input_salary number:=78546;
+salary is above the range..!
+PL/SQL procedure successfully completed.*/

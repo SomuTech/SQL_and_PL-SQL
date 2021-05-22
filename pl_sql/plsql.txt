@@ -1,0 +1,11 @@
+declare
+    x varchar(10);
+    y number(5):=25;
+    z number (5);
+begin
+      select sname,age
+      into x,z
+      from sailors where age=27;
+      dbms_output.put_line(x);
+end;
+/

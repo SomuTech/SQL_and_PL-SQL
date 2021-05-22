@@ -1,0 +1,23 @@
+declare
+	n number:=&n;
+begin
+	if mod(n,2)=0 then
+		dbms_output.put_line(n ||' is even number');
+	else
+		dbms_output.put_line(n ||' is odd number');
+	end if;
+end;
+/
+
+/*OUTPUT
+Enter value for n: 99
+old   2:        n number:=&n;
+new   2:        n number:=99;
+99 is odd number
+PL/SQL procedure successfully completed.
+
+Enter value for n: -298
+old   2:        n number:=&n;
+new   2:        n number:=-298;
+-298 is even number
+PL/SQL procedure successfully completed.*/
