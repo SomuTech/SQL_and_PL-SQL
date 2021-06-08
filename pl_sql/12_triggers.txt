@@ -1,0 +1,33 @@
+   TRIGGER CREATION:
+=========================== 
+  1  create or replace trigger student_changes
+  2  before update or insert on students
+  3  for each row
+  4  when (new.id>0)
+  5  declare
+  6     new_marks number;
+  7     old_marks number;
+  8  begin
+  9     if (:new.attendence<>:old.attendence and :new.attendence<85) then
+ 10             dbms_output.put_line('attendence is less than 85%');
+ 11     end if;
+ 12     old_marks:=(:old.sub1+:old.sub2+:old.sub3+:old.sub4)/4;
+ 13     new_marks:=(:new.sub1+:new.sub2+:new.sub3+:new.sub4)/4;
+ 14     if (old_marks<>new_marks and new_marks<40) then
+ 15             dbms_output.put_line('marks are less than 40%:'||new_marks);
+ 16     end if;
+ 17* end;
+SQL> /
+
+Trigger created.
+
+========================================
+SQL> update students set sub1=30 where id=110;
+marks are less than 40%:25
+
+1 row updated.
+=====================================
+SQL> update students set attendence=30 where id=110;
+attendence is less than 85%
+
+1 row updated.
