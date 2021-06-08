@@ -1,0 +1,344 @@
+				VIEWS
+===================
+SQL> SELECT *FROM STAFF;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY
+---------- ------- -------- ---------- -------- ------ ----------
+       140 yogi    me               35 tpt      M           27000
+       126 yogi    csse             39 mumbai   M           35000
+       127 charan  csse             49 mumbai   M           35000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           75000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+
+10 rows selected.
+
+CREATE VIEW
+=====================
+SQL> create view staff_view as select id,name,dept from staff;
+
+View created.
+
+SQL> select *from staff_view;
+
+        ID NAME    DEPT
+---------- ------- --------
+       140 yogi    me
+       126 yogi    csse
+       127 charan  csse
+       137 charan  cse
+       147 charan  cse
+       105 giri    ece
+       150 ganesh  bse
+       120 prabha  bse
+       133 nidhi   ece
+       161 pooja   bse
+
+10 rows selected.
+
+SQL> create view staff_view_cs as select id,name,dept from staff where dept='cse' or dept='csse';
+
+View created.
+
+SQL> select *from staff_view_cs;
+
+        ID NAME    DEPT
+---------- ------- --------
+       126 yogi    csse
+       127 charan  csse
+       137 charan  cse
+       147 charan  cse
+
+SQL> create view staff_above_salary as select id,name,dept from staff where salary>40000;
+
+View created.
+
+SQL> select *from staff_above_salary;
+
+        ID NAME    DEPT
+---------- ------- --------
+       105 giri    ece
+       150 ganesh  bse
+       120 prabha  bse
+       133 nidhi   ece
+       161 pooja   bse
+
+SQL> create view salary_above_avg as select id,name,dept,salary from staff where salary>(select avg(salary) from staff);
+
+View created.
+
+SQL> select *from salary_above_avg;
+
+        ID NAME    DEPT         SALARY
+---------- ------- -------- ----------
+       105 giri    ece           47000
+       150 ganesh  bse           43000
+       120 prabha  bse           75000
+       133 nidhi   ece           43000
+       161 pooja   bse           47000
+
+
+UPDATE VIEW
+===================
+
+SQL> create or replace view salary_above_avg as select id,name,salary from staff where salary>(select avg(salary) from staff);
+
+View created.
+
+SQL> select *from salary_above_avg;
+
+        ID NAME        SALARY
+---------- ------- ----------
+       105 giri         47000
+       150 ganesh       43000
+       120 prabha       75000
+       133 nidhi        43000
+       161 pooja        47000
+
+SQL> create or replace view staff_view as select id,name,dept,gender from staff where gender='m' or gender='M';
+
+View created.
+
+SQL> select *from staff_view;
+
+        ID NAME    DEPT     GENDER
+---------- ------- -------- ------
+       140 yogi    me       M
+       126 yogi    csse     M
+       127 charan  csse     M
+       137 charan  cse      M
+       147 charan  cse      M
+       120 prabha  bse      M
+
+6 rows selected.
+
+SQL> select id,name from staff_view;
+
+        ID NAME
+---------- -------
+       140 yogi
+       126 yogi
+       127 charan
+       137 charan
+       147 charan
+       120 prabha
+
+6 rows selected.
+
+DROP VIEW
+====================
+SQL> drop view staff_view;
+
+View dropped.
+
+					INDEX
+================================
+CREATE INDEX
+=================
+SQL> --INDEX
+SQL> create index staff_index on staff(id,name,dept);
+
+Index created.
+
+
+SQL> create unique index unique_staff_index on staff(id,name,dept,gender);
+
+Index created.
+
+DROP INDEX
+===============
+
+SQL> drop index staff_index;
+
+Index dropped.
+
+===============================================
+		SEQUENCE
+================
+
+SQL> create sequence movie_seq start with 0 increment by 1 minvalue 0 maxvalue 10 nocycle;
+
+Sequence created.
+
+SQL> create table movie(id number primary key ,name varchar(10) not null,language varchar(8),rating number);
+
+Table created.
+
+SQL> insert into movie values(movie_seq.nextval,'billa','telugu',10);
+
+1 row created.
+
+SQL> insert into movie values(movie_seq.nextval,'m s dhoni','hindi',9);
+
+1 row created.
+
+SQL> insert into movie values(movie_seq.nextval,'jersey','telugu',8);
+
+1 row created.
+
+SQL> insert into movie values(movie_seq.nextval,'darling','kanada',7);
+
+1 row created.
+
+SQL> insert into movie values(movie_seq.nextval,'rebal','tamil',8);
+
+1 row created.
+
+SQL> select *from movie;
+
+        ID NAME       LANGUAGE     RATING
+---------- ---------- -------- ----------
+         0 billa      telugu           10
+         1 m s dhoni  hindi             9
+         2 jersey     telugu            8
+         3 darling    kanada            7
+         4 rebal      tamil             8
+
+SQL> drop sequence movie_seq;
+
+Sequence dropped.
+
+=======================================================		
+		
+			SYNONYM
+=========
+SQL> create synonym empl for employee;
+
+Synonym created.
+
+SQL> update empl set name='king' where id=140;
+
+1 row updated.
+
+SQL> select *from employee;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY       JOBS
+---------- ------- -------- ---------- -------- ------ ---------- ----------
+       140 king    me               35 tpt      M           50000
+       126 yogi    csse             39 mumbai   M           53000
+       127 charan  csse             49 mumbai   M           35000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           81000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+
+10 rows selected.
+
+SQL> insert into employee values(110,'dosa','rrr',20,'tpt','F',98070,7);
+
+1 row created.
+
+SQL> select *from employee;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY       JOBS
+---------- ------- -------- ---------- -------- ------ ---------- ----------
+       140 king    me               35 tpt      M           50000
+       126 yogi    csse             39 mumbai   M           53000
+       127 charan  csse             49 mumbai   M           35000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           81000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+       110 dosa    rrr              20 tpt      F           98070          7
+
+11 rows selected.
+
+SQL> delete from empl where id=110;
+
+1 row deleted.
+
+SQL> select *from employee;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY       JOBS
+---------- ------- -------- ---------- -------- ------ ---------- ----------
+       140 king    me               35 tpt      M           50000
+       126 yogi    csse             39 mumbai   M           53000
+       127 charan  csse             49 mumbai   M           35000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           81000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+
+10 rows selected.
+
+SQL> drop synonym empl;
+
+Synonym dropped.
+
+==========================================================
+
+		SAVEPOINT	ROLLBACK
+=============
+
+SQL> insert into staff values(110,'meha','ca',45,'hyd','F',97843);
+
+1 row created.
+
+SQL> savepoint insert_1;
+
+Savepoint created.
+
+SQL> insert into staff values(111,'mehaath','ca',45,'hyd','F',97843);
+
+1 row created.
+
+SQL> savepoint insert_2;
+
+Savepoint created.
+
+SQL> select *from staff;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY
+---------- ------- -------- ---------- -------- ------ ----------
+       126 yogi    csse             39 mumbai   M           35000
+       127 charan  csse             49 mumbai   M           35000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       110 meha    ca               45 hyd      F           97843
+       111 mehaath ca               45 hyd      F           97843
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           75000
+       161 pooja   bse              25 hyd      F           47000
+
+10 rows selected.
+
+SQL> --rollback
+SQL> rollback to insert_1;
+
+Rollback complete.
+
+SQL> select *from staff;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY
+---------- ------- -------- ---------- -------- ------ ----------
+       140 yogi    me               35 tpt      M           27000
+       126 yogi    csse             39 mumbai   M           35000
+       127 charan  csse             49 mumbai   M           35000
+       137 charan  cse              49 mumbai   M           25000
+       147 charan  cse              49 mumbai   M           25000
+       110 meha    ca               45 hyd      F           97843
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           75000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+
+11 rows selected.
+
+SQL>
+
+

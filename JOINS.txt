@@ -1,0 +1,160 @@
+		JOINS
+============================
+
+SQL> select *from customer;
+
+        ID NAME       GENDE CITY
+---------- ---------- ----- ----------
+       110 raghu      m     tpt
+       112 somu       m     hyd
+       111 vinay      m     delhi
+       115 pooja      f     delhi
+       113 priya      f     hyd
+
+SQL> select *from orders;
+
+  ORDER_ID         ID CITY
+---------- ---------- ----------
+        10        110 hyd
+        11        115 hyd
+        19        155 tpt
+        12        177 tpt
+
+
+INNER JOIN
+=================
+SQL> select customer.id,customer.name,orders.order_id from customer INNER JOIN orders on  customer.id=orders.id;
+
+        ID NAME         ORDER_ID
+---------- ---------- ----------
+       110 raghu              10
+       115 pooja              11
+
+LEFT JOIN
+==================
+SQL> select customer.id,customer.name,orders.order_id from customer LEFT JOIN orders on  customer.id=orders.id;
+
+        ID NAME         ORDER_ID
+---------- ---------- ----------
+       110 raghu              10
+       115 pooja              11
+       111 vinay
+       112 somu
+       113 priya
+
+
+LEFT EXCLUDING JOIN
+==============================
+SQL> select customer.id,customer.name,orders.id from customer LEFT JOIN orders on customer.id=orders.id where orders.id is null;
+
+        ID NAME               ID
+---------- ---------- ----------
+       111 vinay
+       112 somu
+       113 priya
+
+RIGHT JOIN
+=======================
+SQL> select customer.id,customer.name,orders.order_id from customer RIGHT JOIN orders on  customer.id=orders.id;
+
+        ID NAME         ORDER_ID
+---------- ---------- ----------
+       110 raghu              10
+       115 pooja              11
+                              19
+                              12
+
+SQL> select customer.id,customer.name,orders.id from customer RIGHT OUTER JOIN orders on customer.id=orders.id;
+
+        ID NAME               ID
+---------- ---------- ----------
+       110 raghu             110
+       115 pooja             115
+                             155
+                             177
+
+RIGHT EXCLUDING JOIN
+=============================
+SQL> select customer.id,customer.name,orders.id from customer right JOIN orders on customer.id=orders.id where customer.id is null;
+
+        ID NAME               ID
+---------- ---------- ----------
+                             155
+                             177
+
+FULL JOIN
+=======================
+SQL> select customer.id,customer.name,orders.order_id from customer FULL JOIN orders on  customer.id=orders.id;
+
+        ID NAME         ORDER_ID
+---------- ---------- ----------
+       110 raghu              10
+       112 somu
+       111 vinay
+       115 pooja              11
+       113 priya
+                              19
+                              12
+
+7 rows selected.
+
+SQL> select customer.id,customer.name,orders.order_id from customer FULL OUTER JOIN orders on  customer.id=orders.id;
+
+        ID NAME         ORDER_ID
+---------- ---------- ----------
+       110 raghu              10
+       112 somu
+       111 vinay
+       115 pooja              11
+       113 priya
+                              19
+                              12
+
+7 rows selected.
+
+OUTER EXCLUDING JOIN
+========================
+SQL> select customer.id,customer.name,orders.id from customer full outer JOIN orders on customer.id=orders.id where customer.id is null or orders.id is null;
+
+        ID NAME               ID
+---------- ---------- ----------
+       112 somu
+       111 vinay
+       113 priya
+                             155
+                             177
+
+ 
+SELF JOIN
+=======================
+SQL> select customer.id,customer.name,orders.order_id,orders.city from customer,orders;
+
+        ID NAME         ORDER_ID CITY
+---------- ---------- ---------- ----------
+       110 raghu              10 hyd
+       112 somu               10 hyd
+       111 vinay              10 hyd
+       115 pooja              10 hyd
+       113 priya              10 hyd
+       110 raghu              11 hyd
+       112 somu               11 hyd
+       111 vinay              11 hyd
+       115 pooja              11 hyd
+       113 priya              11 hyd
+       110 raghu              19 tpt
+
+        ID NAME         ORDER_ID CITY
+---------- ---------- ---------- ----------
+       112 somu               19 tpt
+       111 vinay              19 tpt
+       115 pooja              19 tpt
+       113 priya              19 tpt
+       110 raghu              12 tpt
+       112 somu               12 tpt
+       111 vinay              12 tpt
+       115 pooja              12 tpt
+       113 priya              12 tpt
+
+20 rows selected.
+
+SQL>
