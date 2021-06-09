@@ -379,6 +379,3 @@ SQL> select *from staff;
 
 11 rows selected.
 
-SQL>
-
-
