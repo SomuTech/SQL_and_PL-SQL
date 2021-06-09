@@ -12,7 +12,7 @@ SQL> SELECT *FROM STAFF;
        105 giri    ece              28 hyd      F           47000
        150 ganesh  bse              33 delhi    F           43000
        120 prabha  bse              55 chennai  M           75000
-       133 nidhi   ece              34 delhi    F           43000
+       133 nidhi   ece              34 delhi    F     create       43000
        161 pooja   bse              25 hyd      F           47000
 
 10 rows selected.
@@ -80,6 +80,46 @@ SQL> select *from salary_above_avg;
        120 prabha  bse           75000
        133 nidhi   ece           43000
        161 pooja   bse           47000
+===============================================
+
+SQL> create view staff_view as select id,name,dept from staff;
+
+View created.
+
+SQL> insert into staff_view values(876,'naga','cse');
+
+1 row created.
+
+SQL> insert into staff_view values(87,'naga','cse');
+
+1 row created.
+
+SQL> delete staff_view where id=137;
+
+1 row deleted.
+
+SQL> update staff_view set name='gagan' where id=147;
+
+1 row updated.
+
+
+SQL> select *from staff;
+
+        ID NAME    DEPT            AGE ADDRESS  GENDER     SALARY
+---------- ------- -------- ---------- -------- ------ ----------
+       140 yogi    me               35 tpt      M           27000
+       126 yogi    csse             39 mumbai   M           35000
+       127 charan  csse             49 mumbai   M           35000
+       147 gagan   cse              49 mumbai   M           25000
+       876 naga    cse
+        87 naga    cse
+       105 giri    ece              28 hyd      F           47000
+       150 ganesh  bse              33 delhi    F           43000
+       120 prabha  bse              55 chennai  M           75000
+       133 nidhi   ece              34 delhi    F           43000
+       161 pooja   bse              25 hyd      F           47000
+
+11 rows selected.
 
 
 UPDATE VIEW
