@@ -1,28 +1,34 @@
+--A program which gives sum of 2 numbers and sum of 3 numbers
 declare
 	a number:=&a;
 	b number:=&b;
 	c number:=&c;
-	procedure addition(x IN number,y IN  number,z IN OUT number)
+	result number:=0;
+	procedure addition(x IN number,y IN  number,z IN OUT number,result OUT number)
 	is
 	begin
-		z:=x+y+z;
+		result:=x+y+z;
+		z:=x+y;
 	end;
 begin
-	addition(a,b,c);
-	dbms_output.put_line('addition given 3 numbers: '||c);
+	addition(a,b,c,result);
+	dbms_output.put_line('addition given 2 numbers: '||c);
+	dbms_output.put_line('addition given 3 numbers: '||result);
 end;
 /
 
-/*OUTPUT:
-Enter value for a: 14
+/*OUTPUT
+Enter value for a: 10
 old   2:        a number:=&a;
-new   2:        a number:=14;
-Enter value for b: 54
+new   2:        a number:=10;
+Enter value for b: 20
 old   3:        b number:=&b;
-new   3:        b number:=54;
-Enter value for c: 78
+new   3:        b number:=20;
+Enter value for c: 30
 old   4:        c number:=&c;
-new   4:        c number:=78;
-addition given 3 numbers: 146
+new   4:        c number:=30;
+addition given 2 numbers: 30
+addition given 3 numbers: 60
 
-PL/SQL procedure successfully completed.*/
+PL/SQL procedure successfully completed.
+*/
